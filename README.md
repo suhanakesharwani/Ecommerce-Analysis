@@ -1,4 +1,4 @@
-# 📦 Olist E-Commerce Analytics Engine
+# 📦  E-Commerce Analytics Engine
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
@@ -79,21 +79,21 @@ An end-to-end data pipeline and business intelligence suite analyzing over 100k 
 ├── .env.example               # Template for environment credentials
 ├── requirements.txt           # Locked package dependencies
 └── README.md
+# ⚡ Quickstart
 
-Quickstart
-Prerequisites
-Python 3.11+
+## Prerequisites
+* Python 3.11+
+* MySQL Server 8.0+
+* Kaggle account / Brazilian E-Commerce dataset downloaded to `data/`
 
-MySQL Server 8.0+
+---
 
-Kaggle account / Brazilian E-Commerce dataset downloaded to data/
+## 🛠️ Installation
 
-## Installation
-Clone the repository:
-
-Bash
-git clone [https://github.com/](https://github.com/)<your-username>/olist-ecommerce-sql-python-analysis.git
-cd olist-ecommerce-sql-python-analysis
+1. **Clone the repository:**
+```bash
+git clone [https://github.com/](https://github.com/)<your-username>/Ecommerce-Analysis.git
+cd Ecommerce-Analysis
 Environment configuration:
 
 Bash
@@ -113,7 +113,8 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 Run pipeline:
-Execute notebooks in numerical order (01 through 04) or run the raw SQL scripts located in sql/ directly via your preferred database client.
+Execute notebooks in numerical order (01 through 04) or run the raw SQL scripts located in sql/ directly via your preferred database client
+
 # 👨‍💻 Author
 Suhana Kesharwani
 

@@ -1,7 +1,7 @@
 /*
 Data Import Notes
 
-The Olist dataset was imported into MySQL using Python.
+The  dataset was imported into MySQL using Python.
 
 Libraries Used:
 - pandas
