@@ -1,239 +1,120 @@
-# 🛒 Olist E-Commerce Data Analysis using SQL & Python
+# 📦 Olist E-Commerce Analytics Engine
 
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-orange)
-![Pandas](https://img.shields.io/badge/Pandas-2.x-purple)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Status](https://img.shields.io/badge/Project-Completed-brightgreen)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Pandas](https://img.shields.io/badge/Pandas-2.x-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-## 📌 Project Overview
-
-This project analyzes the Brazilian Olist E-Commerce dataset using **MySQL**, **SQL**, **Pandas**, **Matplotlib**, and **Seaborn** to uncover business insights related to revenue, customers, products, sellers, reviews, and deliveries.
-
-The project demonstrates the complete data analysis workflow, from importing raw CSV files into a relational database to performing SQL analysis and creating insightful visualizations.
+An end-to-end data pipeline and business intelligence suite analyzing over 100k Brazilian e-commerce orders. This project bridges normalized relational database design (MySQL) with statistical EDA and visual reporting (Python) to surface actionable insights across logistics, sales velocity, customer behavior, and merchant revenue.
 
 ---
 
-# 📂 Dataset
+## Executive Summary & Key Findings
 
-**Dataset:** Olist Brazilian E-Commerce Dataset
-
-The dataset contains information about:
-
-- Customers
-- Orders
-- Order Items
-- Products
-- Sellers
-- Payments
-- Reviews
-- Geolocation
-- Translation
-
-**Dataset License:** CC BY-NC-SA 4.0
-https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+* **Revenue Pareto Principle:** Merchant and category earnings follow a heavy power-law distribution—the top 10% of merchants account for the vast majority of gross merchandise value (GMV).
+* **Fulfillment Bottlenecks:** While overall on-time delivery rates remain resilient, regional logistics across remote federative units show significant latency variance compared to central hubs (e.g., SP, RJ).
+* **Customer Lifetime Dynamics:** Transaction frequencies indicate an overwhelming reliance on single-order acquisitions, underscoring retention and re-engagement as prime opportunities for growth.
+* **Sentiment vs. Delivery Latency:** Review scores are inversely correlated with delivery delays; transit time degradation is the single largest driver of sub-3-star ratings.
 
 ---
 
-# 🎯 Objectives
-
-The main objectives of this project are:
-
-- Calculate overall business revenue.
-- Analyze monthly revenue trends.
-- Identify top-performing products and categories.
-- Find high-value customers.
-- Analyze seller performance.
-- Study customer review patterns.
-- Evaluate delivery performance.
-- Build meaningful business visualizations.
-
----
-
-# 🛠 Technologies Used
-
-- Python
-- MySQL
-- SQL
-- Pandas
-- Matplotlib
-- Seaborn
-- SQLAlchemy
-- python-dotenv
-- Jupyter Notebook
-
-# ⚙️ Setup
-
-1. Clone the repository.
-2. Create a `.env` file by copying `.env.example` and replace `YOUR_PASSWORD` with your local MySQL password.
-3. Add your MySQL credentials:
-
-```text
-MYSQL_USER=root
-MYSQL_PASSWORD=YOUR_PASSWORD
-MYSQL_HOST=localhost
-MYSQL_DATABASE=olist
-```
-
-4. Install the required packages:
-
-```bash
-pip install -r requirements.txt
-```
-
-5. Run the notebooks in order.
-
----
-# 📁 Project Structure
-
-```text
-olist-ecommerce-sql-python-analysis/
-
+## Architecture & Data Workflow
+[Raw CSVs (Kaggle)]
 │
-├── data/
+▼
+[MySQL Staging & Schema Design]  ──► Relational Modeling (PK/FK Constraints)
 │
-├── images/
+▼
+[Complex SQL Analytical Layer]   ──► Window Functions, Aggregations, CTEs
 │
-├── notebooks/
-│   ├── 01_import_mysql.ipynb
-│   ├── 02_sql_analysis.ipynb
-│   ├── 03_python_eda.ipynb
-│   └── 04_dashboard.ipynb
+▼ (SQLAlchemy / PyMySQL)
+[Python EDA & Visualization]     ──► Pandas, Matplotlib, Seaborn
 │
-├── sql/
-│   ├── analysis_queries.sql
-│   ├── import_queries.sql
-│   └── schema.sql
-│
-├── .gitignore
-├── LICENSE
-├── README.md
-└── requirements.txt
-```
-
-> **Note:** Local development uses a .env file to securely store MySQL credentials. This file is intentionally excluded from version control.
-
+▼
+[Executive KPI Reporting]        ──► Structured Visual Dashboard
 
 ---
 
-# 📊 SQL Analysis
+## Core Analytics Modules
 
-The following business questions were answered using SQL.
-
-## Business KPIs
-
-- Total Revenue
-- Total Orders
-- Average Order Value
-
-## Customer Analysis
-
-- Monthly Revenue Trend
-- Top Spending Customers
-- Customers with Highest Number of Orders
-- Average Spending by Customer
-- Repeat Customers
-- Customer Distribution by State
-
-## Product Analysis
-
-- Most Purchased Products
-- Highest Revenue Products
-- Categories with Highest Revenue
-- Average Product Price by Category
-
-## Seller Analysis
-
-- Seller Revenue
-- Sellers with Highest Number of Orders
-- Average Seller Revenue
-- Seller Distribution by State
-
-## Review Analysis
-
-- Review Score Distribution
-- Revenue vs Review Score
-- Average Review Score by Product Category
-
-## Delivery Analysis
-
-- Average Delivery Time
-- Fastest Delivery State
-- Slowest Delivery State
-- Early Delivered Orders
-- Late Delivered Orders
-- Delivery Delay Distribution
+| Domain | Key Metrics & SQL Logic |
+| :--- | :--- |
+| **Financial KPIs** | Gross Revenue, Average Order Value (AOV), Monthly Recurring Run Rates |
+| **Logistics & Ops** | Transit Delta (`order_delivered_customer_date` vs `order_estimated_delivery_date`), Delay Outliers, State Latency Rankings |
+| **Customer Profiling** | Geographic density maps, spend distribution percentiles, repeat purchase cohorts |
+| **Catalog & Sellers** | Margin-leading product categories, unit volume leaders, seller concentration ratios |
+| **Feedback Diagnostics** | Rating distributions, Category-specific sentiment scoring, delivery delay impact curves |
 
 ---
 
-# 📈 Visualizations
+## Visual Showcase
 
-The project includes the following visualizations:
-
-- Monthly Revenue Trend
-- Top Product Categories by Revenue
-- Customer Distribution by State
-- Seller Revenue
-- Review Score Distribution
-- Revenue vs Review Score
-- Delivery Delay Distribution
-- Slowest Delivery States
-
----
-
-# 📷 Dashboard
-
+### Executive Summary Dashboard
 ![Dashboard](images/dashboard.png)
 
----
-
-# 📷 Sample Visualizations
-
-## Monthly Revenue Trend
-
-![Monthly Revenue](images/monthly_revenue_trend.png)
-
----
-
-## Top Product Categories
-
-![Top Categories](images/top_categories.png)
+### Performance Breakdowns
+| Metric | Visualization |
+| :--- | :--- |
+| **Sales Velocity** | ![Monthly Revenue](images/monthly_revenue_trend.png) |
+| **Category Distribution** | ![Top Categories](images/top_categories.png) |
+| **Rating Spread** | ![Review Distribution](images/review_distribution.png) |
+| **Merchant Volume** | ![Seller Revenue](images/seller_revenue.png) |
 
 ---
 
-## Review Score Distribution
+## Repository Structure
 
-![Review Distribution](images/review_distribution.png)
+```text
+├── data/                      # Data dictionaries and schemas
+├── images/                    # Exported visual artifacts & plots
+├── notebooks/
+│   ├── 01_import_mysql.ipynb  # Schema creation & high-throughput CSV ingestion
+│   ├── 02_sql_analysis.ipynb  # CTEs, joins, and relational querying
+│   ├── 03_python_eda.ipynb    # Statistical profiling and distribution checks
+│   └── 04_dashboard.ipynb     # Multi-panel visualization assembly
+├── sql/
+│   ├── schema.sql             # Table declarations & indexes
+│   ├── import_queries.sql     # Data loading scripts
+│   └── analysis_queries.sql   # Production analytical queries
+├── .env.example               # Template for environment credentials
+├── requirements.txt           # Locked package dependencies
+└── README.md
 
----
+Quickstart
+Prerequisites
+Python 3.11+
 
-## Seller Revenue
+MySQL Server 8.0+
 
-![Seller Revenue](images/seller_revenue.png)
+Kaggle account / Brazilian E-Commerce dataset downloaded to data/
 
----
+## Installation
+Clone the repository:
 
-# 🔍 Key Insights
+Bash
+git clone [https://github.com/](https://github.com/)<your-username>/olist-ecommerce-sql-python-analysis.git
+cd olist-ecommerce-sql-python-analysis
+Environment configuration:
 
-- Revenue shows clear monthly fluctuations indicating seasonal buying patterns.
-- A few product categories contribute significantly to total revenue.
-- Customer ratings are predominantly positive, with most reviews receiving high scores.
-- Seller revenue is highly concentrated among a small number of sellers.
-- Delivery performance varies considerably across different states.
-- Most deliveries are completed on or before the estimated delivery date.
+Bash
+cp .env.example .env
+Populate .env with your database credentials:
 
----
+Ini, TOML
+MYSQL_USER=root
+MYSQL_PASSWORD=your_secure_password
+MYSQL_HOST=127.0.0.1
+MYSQL_PORT=3306
+MYSQL_DATABASE=olist
+Install dependencies:
 
-# 🚀 Future Improvements
-
-- Interactive dashboard using Power BI or Tableau.
-- Customer segmentation using Machine Learning.
-- Sales forecasting.
-- Recommendation System.
-- Customer Lifetime Value (CLV) analysis.
-
----
-
+Bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+Run pipeline:
+Execute notebooks in numerical order (01 through 04) or run the raw SQL scripts located in sql/ directly via your preferred database client.
 # 👨‍💻 Author
+Suhana Kesharwani
 
-**Suhana Kesharwani**
+Data & Software Engineering
